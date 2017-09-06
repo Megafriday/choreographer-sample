@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Choreographer-jsサンプル</title>
+    <style>
+      body {
+        margin: 0;
+      }
+      
+      .box {
+        width: 50%;
+        height: 100vh;
+        background-color: #000;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box"></div>
+    
+    <script src="https://christinecha.github.io/choreographer-js/dist/choreographer.min.js"></script>
+    <script>
+      var config = {
+        animations: [{
+            range: [0, 200],  //マウスのY座標の範囲
+            selector: '.box', //div要素のクラス「box」を指定
+            type: 'scale',    //連続的な移動量を取得するため「scale」を指定
+            style: 'opacity', //透明度をアニメーションするため「opacity」を指定
+            from: 0,          //「opacity」の値を0からスタート
+            to: 1             //「opacity」の値が1になるまでアニメーションする
+        }]
+      };
+
+      var cgp = new Choreographer( config );
+
+      //マウスの動きを検出するイベント処理
+      document.addEventListener('mousemove', function(e) {
+
+        //マウスの縦方向（Y座標）の値を使ってアニメーションさせる
+        cgp.runAnimationsAt(e.clientY);
+      
+      })
+
+    </script>
+  </body>
+</html>
