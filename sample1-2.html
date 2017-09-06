@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Choreographer-jsサンプル</title>
+    <style>
+      body {
+        margin: 0;
+        position: relative;
+      }
+      
+      .box {
+        width: 50%;
+        height: 100vh;
+        background-color: #000;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+      
+      .control {
+        width: 30px;
+        height: 150px;
+        background-color: #5f5;
+        border-radius: 10%;
+        border: 1px solid #888;
+        position: absolute;
+        top: 150px;
+        right: 400px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box"></div>
+    
+    <!-- コントロール用のUI -->
+    <div id="control" class="control"></div>
+    
+    <script src="https://christinecha.github.io/choreographer-js/dist/choreographer.min.js"></script>
+    <script>
+      //コントロール用のdiv要素を取得する
+      var control = document.getElementById('control');
+      
+      var config = {
+        animations: [{
+            range: [0, 200],
+            selector: '.box',
+            type: 'scale',
+            style: 'opacity',
+            from: 0,
+            to: 1
+        }]
+      };
+
+      var cgp = new Choreographer(config);
+
+      //コントロール用のdiv要素の範囲内にいるマウスの移動量を取得する
+      control.addEventListener('mousemove', function(e) {
+
+        cgp.runAnimationsAt( e.offsetY );
+
+      })
+
+    </script>
+  </body>
+</html>
