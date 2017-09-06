@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Choreographer-jsサンプル</title>
+    <style>
+      body {
+        margin: 0;
+      }
+      
+      .box {
+        width: 200px;
+        height: 200px;
+        margin: auto;
+        margin-top: 200px;
+        background-color: #faa;
+        border-radius: 50%;
+        border: 5px solid #f66;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box"></div>
+    
+    <script src="https://christinecha.github.io/choreographer-js/dist/choreographer.min.js"></script>
+    <script>
+      var config = {
+        animations: [{
+            range: [0, window.innerHeight / 2], //「画面の高さ ÷ 2」で画面中央までの範囲を指定
+            selector: '.box',
+            type: 'change',  //範囲内か範囲外かの2択にするため「change」を指定
+            style: 'opacity',
+            from: 1,
+            to: 0
+        }]
+      };
+
+      var cgp = new Choreographer( config );
+
+      document.addEventListener('mousemove', function(e) {
+      
+        cgp.runAnimationsAt( e.clientY );
+        
+      })
+
+    </script>
+  </body>
+</html>
