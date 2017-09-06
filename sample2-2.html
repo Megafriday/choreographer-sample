@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Choreographer-jsサンプル</title>
+    <style>
+      body {
+        margin: 0;
+      }
+
+      .text {
+        margin: 100px;
+        text-align: center;
+      }
+      .text div {
+        display: inline-block;
+        font-size: 5em;
+        font-weight: bold;
+        transition: color 0.1s ease-in-out;
+        text-shadow: 2px 2px 4px #666;
+      }
+      .a {
+        color: #f00;
+      }
+      .i {
+        color: #0f0;
+      }
+      .u {
+        color: #00f;
+      }
+      .e {
+        color: #aaa;
+      }
+      .o {
+        color: #fa0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="text">
+      <div class="a">あ</div>
+      <div class="i">い</div>
+      <div class="u">う</div>
+      <div class="e">え</div>
+      <div class="o">お</div>
+    </div>
+    
+    <script src="https://christinecha.github.io/choreographer-js/dist/choreographer.min.js"></script>
+    <script>
+      var config = {
+        animations: [
+        
+          //「あ」の文字設定
+          {
+            range: [0, 100],
+            selector: '.a',
+            type: 'scale',
+            style: 'transform:rotate',  //文字を回転させる
+            from: 0,
+            to: 360,
+            unit: 'deg'
+          },
+          
+          //「い」の文字設定
+          {
+            range: [0, 100],
+            selector: '.i',
+            type: 'scale',
+            style: 'opacity',  //透明度を変化させる
+            from: 1,
+            to: 0
+          },
+          
+          //「う」の文字設定
+          {
+            range: [0, 100],
+            selector: '.u',
+            type: 'scale',
+            style: 'transform:translateY',  //Y軸方向に移動させる
+            from: 0,
+            to: 50,
+            unit: 'px'
+          },
+          {
+            range: [0, 100],
+            selector: '.u',
+            type: 'scale',
+            style: 'transform:scale',  //文字のサイズを変化させる
+            from: 1,
+            to: 2
+          },
+          
+          //「え」の文字設定
+          {
+            range: [0, 100],
+            selector: '.e',
+            type: 'scale',
+            style: 'transform:translateY',  //Y軸方向に移動させる
+            from: 0,
+            to: -50,
+            unit: 'px'
+          },
+          
+          //「お」の文字設定
+          {
+            range: [0, 100],
+            selector: '.o',
+            type: 'scale',
+            style: 'transform:translateX',  //X軸方向に移動させる
+            from: 0,
+            to: 100,
+            unit: 'px'
+          },
+          {
+            range: [0, 100],
+            selector: '.o',
+            type: 'scale',
+            style: 'transform:rotate',  //回転させる
+            from: 0,
+            to: 360,
+            unit: 'deg'
+          }
+        ]
+      };
+
+
+      var cgp = new Choreographer( config );
+
+      document.addEventListener('mousemove', function(e) {
+      
+        cgp.runAnimationsAt( e.clientY );
+
+      })
+
+    </script>
+  </body>
+</html>
