@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Choreographer-jsサンプル</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 20px;
+      }
+      
+      .box {
+        margin: 50px;
+        width: 100px;
+        height: 100px;
+        box-shadow: 1px 1px 4px #aaa;
+        border: 5px solid #eee;
+      }
+      .red {
+        background-color: #f55;
+      }
+      .green {
+        background-color: #5f5;
+      }
+      .blue {
+        background-color: #55f;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box1" class="box red"></div>
+    <div id="box2" class="box green"></div>
+    <div id="box3" class="box blue"></div>
+    
+    
+    <script src="https://christinecha.github.io/choreographer-js/dist/choreographer.min.js"></script>
+    <script>
+      var config = {
+        animations: [
+      
+      //赤色のボックス設定
+      {
+        range: [0, 50],
+        selector: '#box1',
+        type: 'scale',
+        style: 'transform:translateX', //X軸方向に移動させる
+        from: 0,
+        to: 400,
+        unit: 'px'
+      },
+
+      //緑色のボックス設定
+      {
+        range: [0, 100],
+        selector: '#box2',
+        type: 'scale',
+        style: 'width',   //幅のサイズを変化させる
+        from: 100,
+        to: 400,
+        unit: 'px'
+      },
+
+      //青色のボックス設定
+      {
+        range: [0, 100],
+        selector: '#box3',
+        type: 'scale',
+        style: 'transform:rotate',  //回転させる
+        from: 0,
+        to: 360,
+        unit: 'deg'
+      }
+        ]
+      };
+
+      var cgp = new Choreographer( config );
+
+      document.addEventListener('mousemove', function(e) {
+      
+        cgp.runAnimationsAt( e.clientY );
+      
+      })
+
+    </script>
+  </body>
+</html>
